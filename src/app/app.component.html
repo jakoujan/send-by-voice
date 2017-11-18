@@ -3,10 +3,8 @@
   <h1>
     Welcome to {{title}}!
   </h1>
-<my-custom-checkbox [(checked)]="isChecked" emitChanges></my-custom-checkbox>
-
 <form #ngForm="ngForm">
-  <paper-input label="Name" name="name" emitChanges ironControl required [(ngModel)]="title"></paper-input>
+  <paper-input label="Name" name="name" emitChanges required [(ngModel)]="title"></paper-input>
 
   <!-- No two-way binding, [emitChanges] is not needed -->
   <paper-button [disabled]="!ngForm.form.valid" (click)="onSubmit()">Submit</paper-button>

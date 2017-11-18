@@ -16,4 +16,4 @@ webcomponentsReady().then(() => {
 }).catch(error => {
   // No WebComponent support and webcomponentsjs is not loaded
   console.error(error);
-}); F
+});
