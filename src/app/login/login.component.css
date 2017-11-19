@@ -1,0 +1,17 @@
+div.module div.title h1 {
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+    background:  #3399ff;
+}
+
+div.module div.content {
+    padding: 20px;
+}
+
+div.module div.content p {
+    font-size: 13px;
+}
+h1{
+	text-align: center;
+}
