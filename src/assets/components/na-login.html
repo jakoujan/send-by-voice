@@ -26,15 +26,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         z-index: 1;
         cursor: pointer;
       }
-
+      .container{
+        max-width: 500px;
+        padding: 10px;
+        margin: 0 auto;
+      }
       button img {
         width: 30px;
         padding: 0 10px;
       }
     </style>
-    <button on-click="signIn">
-      <span>Accede a la banca</span>
-    </button>
+    <div class="container">
+      <button on-click="signIn">
+         <span>Accede a la banca</span>
+      </button>
+    </div>
   </template>
   <script>
     class NaLogin extends Polymer.Element {
