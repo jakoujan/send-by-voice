@@ -19,6 +19,7 @@
     "paper-input": "PolymerElements/paper-input#^2.0.3",
     "paper-button": "PolymerElements/paper-button#^2.0.0",
     "app-layout": "PolymerElements/app-layout#^2.0.4",
-    "iron-dropdown": "PolymerElements/iron-dropdown#^2.1.0"
+    "iron-dropdown": "PolymerElements/iron-dropdown#^2.1.0",
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.0"
   }
 }

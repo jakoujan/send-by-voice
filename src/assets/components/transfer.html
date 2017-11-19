@@ -1,0 +1,107 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="transfer-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      select {
+        width: 100%;
+        font-size: 18px;
+        background: #fff;
+        padding: 8px;
+        border: 1px solid #ccc;
+        color: rgb(58, 58, 58);
+        margin-bottom: 20px;
+        display: block;
+      }
+
+      .amount {
+        display: block;
+        font-size: 18px;
+        background: #fff;
+        padding: 8px;
+        border: 1px solid #ccc;
+        color: rgb(58, 58, 58);
+      }
+
+      .to-right {
+        float: right;
+      }
+
+      .btn {
+        background: #ccc;
+        color: #000;
+        font-size: 18px;
+        padding: 8px;
+        border: 1px solid #ccc
+      }
+    </style>
+    <label for="wa">Cuenta de retiro</label>
+    <select name="wa" value="{{transaction.wa::change}}">
+      <option>Seleccione una cuenta</option>
+      <template is="dom-repeat" items="{{options}}">
+        <option value="{{item}}">{{item.name}}</option>
+      </template>
+    </select>
+    <label for="da">Cuenta de deposito</label>
+    <select name="da" value="{{transaction.da::change}}">
+      <option>Seleccione una cuenta</option>
+      <template is="dom-repeat" items="{{options}}">
+        <option value="{{item}}">{{item.name}}</option>
+      </template>
+    </select>
+    <label for="wa">Monto</label>
+    <input class="amount" type="number" value="{{transaction.amount::change}}">
+    <div class="to-right">
+      <button class="btn" on-click="selected">Transferir</button>
+    </div>
+  </template>
+
+  <script>
+    /**
+     * `transfer-component`
+     * Simple  amount transfer among accounts
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class TransferComponent extends Polymer.Element {
+      static get is() { return 'transfer-component'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'transfer-component'
+          },
+          val: {
+            type: Object
+          },
+          transaction: {
+            type: Object,
+            value: () => {
+              return new Object()
+            }
+          },
+          options: {
+            type: Array,
+            value: () => ([
+              { id: 1, name: "Opcion 1" },
+              { id: 2, name: "Opcion 2" },
+              { id: 3, name: "Opcion 3" }
+            ])
+          }
+        };
+      }
+
+      selected() {
+        console.log(this.get('transaction'));
+      }
+    }
+
+    window.customElements.define(TransferComponent.is, TransferComponent);
+  </script>
+</dom-module>
