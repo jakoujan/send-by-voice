@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Account } from '../app/entity/account';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  counter: number;
+  ra: Account;
+  aa: Account;
+
+  constructor() {
+    this.counter = 1;
+    this.ra = new Account();
+    this.aa = new Account();
+  }
 
   onSubmit() {
     console.log('Hola');
+    this.counter++
   }
 
 }
