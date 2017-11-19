@@ -5,6 +5,14 @@
   <title>Banca movil Transferencias</title>
   <base href="/">
   <script src="../assets/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+
+  <!-- Importing Web Component's Polyfill -->
+  <script src="../assets/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <!-- Importing Voice-components -->
+  <link rel="import" href="../assets/bower_components/voice-elements/dist/voice-player.html">
+  <link rel="import" href="../assets/bower_components/voice-elements/dist/voice-recognition.html">
+
   <link href="../assets/bower_components/paper-input/paper-input.html" rel="import">
   <link href="../assets/bower_components/paper-button/paper-button.html" rel="import">
   <link href="../assets/bower_components/polymer/polymer.html" rel="import">
@@ -14,5 +22,6 @@
 </head>
 <body>
   <app-root></app-root>
+  <voice-player autoplay text="Hola Sr. Zec ¿En que le puedo ayudar?"></voice-player>
 </body>
 </html>
