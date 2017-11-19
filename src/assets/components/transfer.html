@@ -8,7 +8,16 @@
       :host {
         display: block;
       }
-
+      .container{
+        width: 100%;
+      }
+      .form{
+        max-width: 600px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 0 auto;
+      }
       select {
         width: 100%;
         font-size: 18px;
@@ -31,17 +40,19 @@
       }
 
       .btn {
-        background: #ccc;
-        color: #000;
+        background: #007bff;
+        color: #ffffff;
         font-size: 18px;
-        padding: 8px;
+        padding: 10px;
         border: 1px solid #ccc;
         width: 100%;
         display: block;
         margin-top: 20px;
       }
     </style>
-    <voice-player id="wavoice" accent="es-ES" text="Por favor, dime la cuenta de retiro"></voice-player>
+    <div class="container">
+      <div class="form">
+        <voice-player id="wavoice" accent="es-ES" text="Por favor, dime la cuenta de retiro"></voice-player>
     <label for="wa">Cuenta de retiro</label>
     <select name="wa" value="{{transaction.wa::change}}">
       <option>Seleccione una cuenta</option>
@@ -59,6 +70,9 @@
     <label for="wa">Monto</label>
     <input class="amount" type="number" value="{{transaction.amount::change}}">
     <button class="btn" on-click="selected">Transferir</button>
+      </div>
+    </div>
+    
   </template>
 
   <script>
