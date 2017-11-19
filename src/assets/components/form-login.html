@@ -1,0 +1,40 @@
+<link rel="import" href="../components/na-login.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+
+<dom-module id="form-login">
+  <template>
+    <na-login
+        on-sign-in="signIn"
+        signed-in="[[signedIn]]"
+        disabled="[[!online]]">
+    </na-login>
+    <firebase-auth
+        id="auth"
+        app-name="notes"
+        provider="google"
+        signed-in="{{signedIn}}"
+        user="{{user}}">
+    </firebase-auth>
+  </template>
+  <script>
+    Polymer({
+      is: 'form-login',
+
+      behaviors: [Polymer.NoteAppBehavior],
+
+      signIn: function() {
+        this.$.auth.signInWithPopup()
+          .then(response => {
+            console.log(response.additionalUserInfo.profile);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
+
+      get isEditable() {
+        return this.online;
+      }
+    });
+  </script>
+</dom-module>
