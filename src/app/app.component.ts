@@ -36,4 +36,8 @@ export class AppComponent implements OnInit {
     console.log(this.transaction);
   }
 
+  handleEvent() {
+    console.log('se envia desde web component', this.transaction);
+  }
+
 }
