@@ -12,3 +12,7 @@ div.module div.title h1 {
 div.module div.content {
     padding: 20px;
 }
+
+div.module div.content p {
+    font-size: 13px;
+}
