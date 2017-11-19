@@ -65,7 +65,7 @@
 
         <label for="wa">Cuenta de retiro</label>
         <voice-recognition id="warecognise" accent="es-MX"></voice-recognition>
-        <select id="retir" name="wa" value="{{transaction.wa::change}}">
+        <select id="wa" name="wa" value="{{transaction.wa::change}}">
           <option>Seleccione una cuenta</option>
           <template is="dom-repeat" items="{{was}}">
             <option data$="{{index}}" value$="{{item}}">{{item.account}}</option>
@@ -128,13 +128,12 @@
             var recogni = e.detail.result;
             recogni = recogni.split('');
             var arrayRecognise = '';
-            console.log(recogni);
             recogni.forEach(r => {
               if (isNaN(r)) {
               } else {
                 numphraze = r;
                 numphraze = numphraze - 1;
-                console.log(numphraze);
+                this.$.wa.selectIndex(numphraze);
               }
             });
           });
