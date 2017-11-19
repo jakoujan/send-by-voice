@@ -1,4 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/voice-elements/dist/voice-player.html">
+<link rel="import" href="../bower_components/voice-elements/dist/voice-recognition.html">
 
 <dom-module id="transfer-component">
   <template>
@@ -22,13 +24,10 @@
         display: block;
         font-size: 18px;
         background: #fff;
-        padding: 8px;
         border: 1px solid #ccc;
         color: rgb(58, 58, 58);
-      }
-
-      .to-right {
-        float: right;
+        width: 100%;
+        padding: 8px 0 8px 0;
       }
 
       .btn {
@@ -36,70 +35,81 @@
         color: #000;
         font-size: 18px;
         padding: 8px;
-        border: 1px solid #ccc
+        border: 1px solid #ccc;
+        width: 100%;
+        display: block;
+        margin-top: 20px;
       }
     </style>
+    <voice-player id="wavoice" accent="es-ES" text="Por favor, dime la cuenta de retiro"></voice-player>
     <label for="wa">Cuenta de retiro</label>
     <select name="wa" value="{{transaction.wa::change}}">
       <option>Seleccione una cuenta</option>
-      <template is="dom-repeat" items="{{options}}">
-        <option value="{{item}}">{{item.name}}</option>
+      <template is="dom-repeat" items="{{was}}">
+        <option value$="{{item}}">{{item.account}}</option>
       </template>
     </select>
     <label for="da">Cuenta de deposito</label>
     <select name="da" value="{{transaction.da::change}}">
       <option>Seleccione una cuenta</option>
-      <template is="dom-repeat" items="{{options}}">
-        <option value="{{item}}">{{item.name}}</option>
+      <template is="dom-repeat" items="{{das}}">
+        <option value$="{{item}}">{{item.account}}</option>
       </template>
     </select>
     <label for="wa">Monto</label>
     <input class="amount" type="number" value="{{transaction.amount::change}}">
-    <div class="to-right">
-      <button class="btn" on-click="selected">Transferir</button>
-    </div>
+    <button class="btn" on-click="selected">Transferir</button>
   </template>
 
   <script>
-    /**
-     * `transfer-component`
-     * Simple  amount transfer among accounts
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
     class TransferComponent extends Polymer.Element {
       static get is() { return 'transfer-component'; }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'transfer-component'
-          },
-          val: {
-            type: Object
-          },
-          transaction: {
+          was: {
             type: Object,
-            value: () => {
-              return new Object()
-            }
-          },
-          options: {
-            type: Array,
-            value: () => ([
-              { id: 1, name: "Opcion 1" },
-              { id: 2, name: "Opcion 2" },
-              { id: 3, name: "Opcion 3" }
-            ])
+            observer: '_dataset'
           }
-        };
+        }
+      }
+      connectedCallback() {
+        super.connectedCallback();
+        console.log('connectedCallback');
+        this.$.wavoice.speak();
+
+      }
+      _dataset(value) {
+        if (value) {
+          let c = 1;
+          var numseparate = '';
+          this.get('was').forEach(a => {
+
+            setTimeout(() => {
+              numseparate = '';
+              var num = a.account;
+              var separate = '';
+              num = num.split(separate);
+              num.forEach(n => {
+                numseparate += n + '-';
+              });
+              this.$.wavoice.text = "Cuenta numero " + c + ", " + numseparate + ".";
+              console.log(this.$.wavoice.text);
+              this.$.wavoice.speak();
+              c++;
+            }, 5000);
+
+          });
+        }
+      }
+      attached() {
+        debugger;
       }
 
       selected() {
-        console.log(this.get('transaction'));
+        this.dispatchEvent(new CustomEvent('handle'));
       }
+
+
     }
 
     window.customElements.define(TransferComponent.is, TransferComponent);

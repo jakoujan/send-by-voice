@@ -4,7 +4,7 @@
   </div>
   <div class="content">
     <h1>Transferencia de cuenta a cuenta</h1>
-    
-    <transfer-component></transfer-component>
+    <transfer-component emitChanges (handle)="handleEvent()" [(transaction)]="transaction" [(was)]="was" [(das)]="das"></transfer-component>
+    <voice-player autoplay text="Hola Sr. Zec ¿En que le puedo ayudar?"></voice-player>
   </div>
 </div>
