@@ -6,6 +6,8 @@ import { IronElementsModule, PaperElementsModule } from '@codebakery/origami/lib
 
 import { AppComponent } from './app.component';
 
+import { MockFirebaseService } from './service/mock-firebase.service';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { AppComponent } from './app.component';
     IronElementsModule,
     PaperElementsModule
   ],
-  providers: [],
+  providers: [
+    MockFirebaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

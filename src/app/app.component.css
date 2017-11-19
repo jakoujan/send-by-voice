@@ -1,0 +1,14 @@
+div.module {
+    
+}
+
+div.module div.title h1 {
+    color: #fff;
+    padding: 10px;
+    margin: 0;
+    background:  #3399ff;
+}
+
+div.module div.content {
+    padding: 20px;
+}
