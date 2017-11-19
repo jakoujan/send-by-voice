@@ -50,26 +50,31 @@
         margin-top: 20px;
       }
     </style>
+
     <div class="container">
       <div class="form">
-        <voice-player id="wavoice" accent="es-ES" text="Por favor, dime la cuenta de retiro"></voice-player>
-    <label for="wa">Cuenta de retiro</label>
-    <select name="wa" value="{{transaction.wa::change}}">
-      <option>Seleccione una cuenta</option>
-      <template is="dom-repeat" items="{{was}}">
-        <option value$="{{item}}">{{item.account}}</option>
-      </template>
-    </select>
-    <label for="da">Cuenta de deposito</label>
-    <select name="da" value="{{transaction.da::change}}">
-      <option>Seleccione una cuenta</option>
-      <template is="dom-repeat" items="{{das}}">
-        <option value$="{{item}}">{{item.account}}</option>
-      </template>
-    </select>
-    <label for="wa">Monto</label>
-    <input class="amount" type="number" value="{{transaction.amount::change}}">
-    <button class="btn" on-click="selected">Transferir</button>
+        <!-- <voice-player id="wavoice" accent="es-ES" text="Por favor, dime la cuenta de retiro"></voice-player> -->
+
+      <voice-player id="wavoice" accent="es-MX" text="Por favor, dime la cuenta de retiro"></voice-player>
+
+      <label for="wa">Cuenta de retiro</label>
+      <voice-recognition id="warecognise" accent="es-MX"></voice-recognition>
+      <select name="wa" value="{{transaction.wa::change}}">
+        <option>Seleccione una cuenta</option>
+        <template is="dom-repeat" items="{{was}}">
+          <option value$="{{item}}">{{item.account}}</option>
+        </template>
+      </select>
+      <label for="da">Cuenta de deposito</label>
+      <select name="da" value="{{transaction.da::change}}">
+        <option>Seleccione una cuenta</option>
+        <template is="dom-repeat" items="{{das}}">
+          <option value$="{{item}}">{{item.account}}</option>
+        </template>
+      </select>
+      <label for="wa">Monto</label>
+      <input class="amount" type="number" value="{{transaction.amount::change}}">
+      <button class="btn" on-click="selected">Transferir</button>
       </div>
     </div>
     
@@ -90,6 +95,7 @@
         super.connectedCallback();
         console.log('connectedCallback');
         this.$.wavoice.speak();
+        this.$.warecognise.recognition.start();
 
       }
       _dataset(value) {
@@ -113,6 +119,31 @@
             }, 5000);
 
           });
+
+          this.$.warecognise.addEventListener('result', function(e) {
+            var numphraze;
+            var l = 0;
+            var recogni = e.detail.result;
+            recogni = recogni.split('');
+            var arrayRecognise = '';
+            recogni.forEach(r => {
+              arrayRecognise += r;
+              if(isNaN(arrayRecognise[l]))
+            { 
+            }else{
+              numphraze = arrayRecognise[l];
+              console.log(numphraze);
+            }
+            
+            l++;
+
+            });
+      
+            
+
+        });
+
+
         }
       }
       attached() {
