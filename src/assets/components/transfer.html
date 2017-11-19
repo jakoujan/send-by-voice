@@ -63,10 +63,10 @@
 
         <label for="wa">Cuenta de retiro</label>
         <voice-recognition id="warecognise" accent="es-MX"></voice-recognition>
-        <select name="wa" value="{{transaction.wa::change}}">
+        <select id="retir" name="wa" value="{{transaction.wa::change}}">
           <option>Seleccione una cuenta</option>
           <template is="dom-repeat" items="{{was}}">
-            <option value$="{{item}}">{{item.account}}</option>
+            <option data$="{{index}}" value$="{{item}}">{{item.account}}</option>
           </template>
         </select>
         <label for="da">Cuenta de deposito</label>
@@ -95,6 +95,9 @@
           }
         }
       }
+
+
+
       connectedCallback() {
         super.connectedCallback();
         this.$.wavoice.speak();
@@ -120,12 +123,30 @@
             }, 5000);
 
           });
-          
+    
           this.$.warecognise.recognition.start();
           this.$.warecognise.addEventListener('result', function (e) {
-            var recogni = e.detail.result;
-            console.log(recogni);
+             var numphraze;
+             var l = 0;
+             var recogni = e.detail.result;
+             recogni = recogni.split('');
+             var arrayRecognise = '';
+             console.log(recogni);
+             recogni.forEach(r => {
+              if(isNaN(r))
+               { 
+               }else{
+                 numphraze = r;
+                 numphraze = numphraze -1;
+                 console.log(numphraze);
+               }
+             });
+
+            
+
           });
+
+          
         }
       }
 
