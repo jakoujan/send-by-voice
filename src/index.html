@@ -5,14 +5,7 @@
   <title>Banca movil Transferencias</title>
   <base href="/">
   <script src="../assets/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-
-  <!-- Importing Web Component's Polyfill -->
   <script src="../assets/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-
-    <!-- Importing Voice-components -->
-  <link rel="import" href="../assets/bower_components/voice-elements/dist/voice-player.html">
-  <link rel="import" href="../assets/bower_components/voice-elements/dist/voice-recognition.html">
-
   <link href="../assets/components/transfer.html" rel="import">
   <link href="../assets/components/form-login.html" rel="import">
   <link href="../assets/bower_components/polymerfire/firebase-app.html" rel="import">
@@ -23,36 +16,6 @@
 </head>
 <body>
   <app-root></app-root>
-  <voice-player autoplay text="Por favor selecciona la cuenta de retiro"></voice-player>
-
-  <voice-player id="leer-cuentas" autoplay text="hola"></voice-player>
-
-  <!--<voice-player id="leer-cuentas" autoplay text="Las cuentas que tiene son las siguientes... : cuenta #1:... ... 1-2-3-3-4-3-2-3-4-4, ... ... cuenta #2: ... ... ... 9-8-8-3-6-4-8-7-3-2"></voice-player>-->
-
-  <voice-recognition id="recognition-element"></voice-recognition>
-
-<script>
-
- var input2 = document.querySelector('#leer-cuentas');
- input2.addEventListener('onend', function(e) {
-    alert('termino');
-  });
-
-  
-
-/*var form = document.querySelector('#recognition-form'),
-    input = document.querySelector('#recognition-input'),
-    element = document.querySelector('#recognition-element');
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    element.start();
-});
-
-element.addEventListener('result', function(e) {
-    input.textContent = e.detail.result;
-});*/
-</script>
 
 </body>
 </html>
