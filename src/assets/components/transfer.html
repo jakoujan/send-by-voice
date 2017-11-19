@@ -38,7 +38,7 @@
         font-size: 18px;
         background: var(--white);
         border: 1px solid #ccc;
-        border-radius: 5px; 
+        border-radius: 5px;
         color: rgb(58, 58, 58);
         width: 100%;
         padding: 8px 0 8px 0;
@@ -98,8 +98,6 @@
         }
       }
 
-
-
       connectedCallback() {
         super.connectedCallback();
         this.$.wavoice.speak();
@@ -110,7 +108,6 @@
           let c = 1;
           var numseparate = '';
           this.get('was').forEach(a => {
-
             setTimeout(() => {
               numseparate = '';
               var num = a.account;
@@ -123,32 +120,24 @@
               this.$.wavoice.speak();
               c++;
             }, 5000);
-
           });
-    
           this.$.warecognise.recognition.start();
           this.$.warecognise.addEventListener('result', function (e) {
-             var numphraze;
-             var l = 0;
-             var recogni = e.detail.result;
-             recogni = recogni.split('');
-             var arrayRecognise = '';
-             console.log(recogni);
-             recogni.forEach(r => {
-              if(isNaN(r))
-               { 
-               }else{
-                 numphraze = r;
-                 numphraze = numphraze -1;
-                 console.log(numphraze);
-               }
-             });
-
-            
-
+            var numphraze;
+            var l = 0;
+            var recogni = e.detail.result;
+            recogni = recogni.split('');
+            var arrayRecognise = '';
+            console.log(recogni);
+            recogni.forEach(r => {
+              if (isNaN(r)) {
+              } else {
+                numphraze = r;
+                numphraze = numphraze - 1;
+                console.log(numphraze);
+              }
+            });
           });
-
-          
         }
       }
 
