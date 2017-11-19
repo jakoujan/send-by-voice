@@ -2,7 +2,6 @@
 <link rel="import" href="../bower_components/voice-elements/dist/voice-player.html">
 <link rel="import" href="../bower_components/voice-elements/dist/voice-recognition.html">
 
-
 <dom-module id="transfer-component">
   <template>
     <style>
@@ -16,7 +15,7 @@
 
       .form {
         max-width: 600px;
-        background-color: var(--white);
+        background-color: #ffffff;
         border-radius: 5px;
         padding: 20px;
         margin: 0 auto;
@@ -36,17 +35,16 @@
       .amount {
         display: block;
         font-size: 18px;
-        background: var(--white);
+        background: #fff;
         border: 1px solid #ccc;
-        border-radius: 5px; 
         color: rgb(58, 58, 58);
         width: 100%;
         padding: 8px 0 8px 0;
       }
 
       .btn {
-        background: var(--primary);
-        color: var(--white);
+        background: #007bff;
+        color: #ffffff;
         font-size: 18px;
         padding: 10px;
         border: 1px solid #ccc;
@@ -125,10 +123,10 @@
             }, 5000);
 
           });
-    
+          
           this.$.warecognise.recognition.start();
           this.$.warecognise.addEventListener('result', function (e) {
-             var numphraze;
+             var numphrase;
              var l = 0;
              var recogni = e.detail.result;
              recogni = recogni.split('');
@@ -138,9 +136,9 @@
               if(isNaN(r))
                { 
                }else{
-                 numphraze = r;
-                 numphraze = numphraze -1;
-                 console.log(numphraze);
+                 numphrase = r;
+                 numphrase = numphrase -1;
+                 console.log(numphrase);
                }
              });
 
