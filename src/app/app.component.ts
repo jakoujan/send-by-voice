@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Account } from '../app/entity/account';
 import { MockFirebaseService } from "./service/mock-firebase.service";
+import { Transaction } from "./entity/transaction";
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,14 @@ import { MockFirebaseService } from "./service/mock-firebase.service";
 export class AppComponent implements OnInit {
   title = 'app';
   counter: number;
-  wa: Account;
-  da: Account;
   was: Array<Account>;
   das: Array<Account>;
-  amount: number;
-
+  transaction: Transaction;
   constructor(private mockService: MockFirebaseService) {
     this.counter = 1;
-    this.wa = new Account(null, null, null);
-    this.da = new Account(null, null, null);
-    this.amount = 0.00;
+    this.transaction = new Transaction();
+    this.transaction.da = new Account(null, null, null);
+    this.transaction.wa = new Account(null, null, null);
   }
 
   ngOnInit(): void {
@@ -32,6 +30,10 @@ export class AppComponent implements OnInit {
   onSubmit() {
     console.log('Hola');
     this.counter++
+  }
+
+  submit() {
+    console.log(this.transaction);
   }
 
 }
