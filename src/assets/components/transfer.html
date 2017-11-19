@@ -1,4 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/voice-elements/dist/voice-player.html">
+<link rel="import" href="../bower_components/voice-elements/dist/voice-recognition.html">
 
 <dom-module id="transfer-component">
   <template>
@@ -39,6 +41,7 @@
         margin-top: 20px;
       }
     </style>
+    <voice-player id="wavoice" accent="es-ES" text="Por favor, dime la cuenta de retiro"></voice-player>
     <label for="wa">Cuenta de retiro</label>
     <select name="wa" value="{{transaction.wa::change}}">
       <option>Seleccione una cuenta</option>
@@ -61,6 +64,47 @@
   <script>
     class TransferComponent extends Polymer.Element {
       static get is() { return 'transfer-component'; }
+      static get properties() {
+        return {
+          was: {
+            type: Object,
+            observer: '_dataset'
+          }
+        }
+      }
+      connectedCallback() {
+        super.connectedCallback();
+        console.log('connectedCallback');
+        this.$.wavoice.speak();
+
+      }
+      _dataset(value) {
+        if (value) {
+          let c = 1;
+          var numseparate = '';
+          this.get('was').forEach(a => {
+
+            setTimeout(() => {
+              numseparate = '';
+              var num = a.account;
+              var separate = '';
+              num = num.split(separate);
+              num.forEach(n => {
+                numseparate += n + '-';
+              });
+              this.$.wavoice.text = "Cuenta numero " + c + ", " + numseparate + ".";
+              console.log(this.$.wavoice.text);
+              this.$.wavoice.speak();
+              c++;
+            }, 5000);
+
+          });
+        }
+      }
+      attached() {
+        debugger;
+      }
+
       selected() {
         this.dispatchEvent(new CustomEvent('handle'));
       }
