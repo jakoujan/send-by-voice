@@ -1,0 +1,71 @@
+<link rel="import" href="https://polygit.org/components/polymer/polymer-element.html">
+<link rel="import" href="https://polygit.org/components/iron-input/iron-input.html">
+<link rel="import" href="https://polygit.org/components/polymer/lib/elements/dom-repeat.html">
+
+<dom-module id="picture-frame">
+
+  <template>
+    <!-- scoped CSS for this element -->
+    <style>
+      div {
+        display: inline-block;
+        background-color: #ccc;
+        border-radius: 8px;
+        padding: 4px;
+      }
+    </style>
+    <!-- 
+    TODO: Try adding other HTML elements to the DOM template to see how they are positioned relative to the distributed child nodes.
+    -->
+    <div>
+      This is <b>{{owner}}</b>'s name-tag element.
+      <slot></slot>
+    </div>
+    <iron-input bind-value="{{owner}}">
+      <input is="iron-input" placeholder="Your name here...">
+    </iron-input>
+
+    <div> Employee list: </div>
+    <p></p>
+    <template is="dom-repeat" items="{{employees}}">
+        <div>First name: <span>{{item.first}}</span></div>
+        <div>Last name: <span>{{item.last}}</span></div>
+        <p></p>
+    </template>
+  </template>
+
+  <script>
+    class PictureFrame extends Polymer.Element {
+      static get is() {
+        return "picture-frame";
+      }
+      static get properties() {
+        return {
+          owner: {
+            type: String,
+            value: "Daniel",
+          }
+        }
+      }
+      constructor() {
+        super();
+        this.employees = [{
+          first: 'Bob',
+          last: 'Li'
+        }, {
+          first: 'Ayesha',
+          last: 'Johnson'
+        }, {
+          first: 'Fatma',
+          last: 'Kumari'
+        }, {
+          first: 'Tony',
+          last: 'Morelli'
+        }];
+      }
+
+    }
+    customElements.define(PictureFrame.is, PictureFrame);
+  </script>
+
+</dom-module>
