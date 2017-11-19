@@ -21,12 +21,6 @@
                     value: 'You are awesome',
                     observer: '_textChanged',
                     notify: true
-                },
-                event:{
-                    type: String,
-                    value: '',
-                    observer: '_propagateEvent',
-                    notify: true
                 }
             },
 
@@ -43,7 +37,6 @@
                 // Initialize attributes
                 this._textChanged();
                 this._accentChanged();
-                this._propagateEvent();
 
                 // Initialize event listeners
                 var events = ['start', 'end', 'error', 'pause', 'resume'];
