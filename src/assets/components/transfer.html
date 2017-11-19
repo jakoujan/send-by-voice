@@ -120,6 +120,7 @@
             }, 5000);
 
           });
+          
           this.$.warecognise.recognition.start();
           this.$.warecognise.addEventListener('result', function (e) {
             var recogni = e.detail.result;
