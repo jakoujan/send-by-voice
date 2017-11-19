@@ -7,21 +7,21 @@
     <form #ngForm="ngForm">
       <div class="form-group">
         <label for="ra">Cuenta de retiro</label>
-        <select class="form-control" name="wa" [(ngModel)]="wa">
+        <select class="form-control" name="wa" [(ngModel)]="transaction.wa">
           <option *ngFor="let a of was" [ngValue]="a">{{a.account}}</option>
         </select>
       </div>
-      <p class="data">Cuenta seleccionada: {{wa.account}} - {{wa.description}}</p>
+      <p class="data" *ngIf="transaction.wa.account != undefined">Cuenta seleccionada: {{transaction.wa.account}} - {{transaction.wa.description}}</p>
       <div class="form-group">
         <label for="ra">Cuenta de deposito</label>
-        <select class="form-control" name="da" [(ngModel)]="da">
+        <select class="form-control" name="da" [(ngModel)]="transaction.da">
           <option *ngFor="let a of das" [ngValue]="a">{{a.account}}</option>
         </select>
       </div>
-      <p class="data">Cuenta seleccionada: {{da.account}} - {{da.description}}</p>
+      <p class="data" *ngIf="transaction.da.account != undefined">Cuenta seleccionada: {{transaction.da.account}} - {{transaction.da.description}}</p>
       <div class="form-group">
         <label for="amount">Monto del deposito</label>
-        <input type="number" class="form-control" name="amount" placeholder="Monto del deposito" [(ngModel)]="amount">
+        <input type="number" class="form-control" name="amount" placeholder="Monto del deposito" [(ngModel)]="transaction.amount">
       </div>
       <div style="float: right">
         <button (click)="submit()" class="btn btn-primary btn-sm">Transferir fondos</button>
