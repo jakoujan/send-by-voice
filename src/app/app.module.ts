@@ -10,11 +10,13 @@ import { AppComponent } from './app.component';
 import { MockFirebaseService } from './service/mock-firebase.service';
 import { TransferComponent  } from "./transfer/transfer.component";
 import { LoginComponent } from './login/login.component';
+import { MessageComponent } from './message/message.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'transfer', component: TransferComponent }
+  { path: 'transfer', component: TransferComponent },
+  { path: 'message', component: MessageComponent }
 ];
 
 
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     TransferComponent,
-    LoginComponent
+    LoginComponent,
+    MessageComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

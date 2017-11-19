@@ -3,7 +3,7 @@
     <h1>Banca movil</h1>
   </div>
   <div class="content">
-    <form-login></form-login>
+    <form-login emitChanges (login)="login()" [(profile)]="profile"></form-login>
     <firebase-app name="notes" api-key="AIzaSyBHlW8LbK1dCtkm9hAQygivfZIYo_ahG8I" auth-domain="biogadgets-175418.firebaseapp.com"
       database-url="https://biogadgets-175418.firebaseio.com">
     </firebase-app>

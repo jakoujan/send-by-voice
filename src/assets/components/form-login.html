@@ -6,7 +6,8 @@
     <na-login
         on-sign-in="signIn"
         signed-in="[[signedIn]]"
-        disabled="[[!online]]">
+        disabled="[[!online]]"
+        profile="{{profile}}">
     </na-login>
     <firebase-auth
         id="auth"
@@ -21,11 +22,15 @@
       is: 'form-login',
 
       behaviors: [Polymer.NoteAppBehavior],
-
+      properties: {
+        profile: Object
+      },
       signIn: function() {
         this.$.auth.signInWithPopup()
           .then(response => {
-            console.log(response.additionalUserInfo.profile);
+            //console.log(response.additionalUserInfo.profile);
+            this.setAttribute('profile', response.additionalUserInfo.profile);
+            this.fire('login',{bubbles: true, profile : response.additionalUserInfo.profile});
           })
           .catch(error => {
             console.log(error);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from '../entity/account';
 import { MockFirebaseService } from "../service/mock-firebase.service";
 import { Transaction } from "../entity/transaction";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class TransferComponent implements OnInit {
   was: Array<Account>;
   das: Array<Account>;
   transaction: Transaction;
-  constructor(private mockService: MockFirebaseService) {
+  constructor(private mockService: MockFirebaseService, private router: Router) {
     this.counter = 1;
     this.transaction = new Transaction();
     this.transaction.da = new Account(null, null, null);
@@ -28,6 +29,7 @@ export class TransferComponent implements OnInit {
 
   handleEvent() {
     console.log('se envia desde web component', this.transaction);
+    this.router.navigate(['/message']);
   }
 
 }
