@@ -1,0 +1,19 @@
+{
+  "user" : {
+    "reg1" : {
+      "account" : 8545125448,
+      "id" : "0001",
+      "name" : "Jhon Doe"
+    },
+    "reg2" : {
+      "account" : 9883648732,
+      "id" : "0002",
+      "name" : "Richard Roe"
+    },
+    "reg3" : {
+      "account" : 1583348704,
+      "id" : "0003",
+      "name" : "Maria DB"
+    }
+  }
+}
