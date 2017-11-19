@@ -41,8 +41,9 @@
         margin-top: 20px;
       }
     </style>
-    <voice-player id="wavoice" accent="es-ES" text="Por favor, dime la cuenta de retiro"></voice-player>
+    <voice-player id="wavoice" accent="es-MX" text="Por favor, dime la cuenta de retiro"></voice-player>
     <label for="wa">Cuenta de retiro</label>
+    <voice-recognition id="warecognise" accent="es-MX"></voice-recognition>
     <select name="wa" value="{{transaction.wa::change}}">
       <option>Seleccione una cuenta</option>
       <template is="dom-repeat" items="{{was}}">
@@ -76,6 +77,7 @@
         super.connectedCallback();
         console.log('connectedCallback');
         this.$.wavoice.speak();
+        this.$.warecognise.recognition.start();
 
       }
       _dataset(value) {
@@ -99,6 +101,31 @@
             }, 5000);
 
           });
+
+          this.$.warecognise.addEventListener('result', function(e) {
+            var numphraze;
+            var l = 0;
+            var recogni = e.detail.result;
+            recogni = recogni.split('');
+            var arrayRecognise = '';
+            recogni.forEach(r => {
+              arrayRecognise += r;
+              if(isNaN(arrayRecognise[l]))
+            { 
+            }else{
+              numphraze = arrayRecognise[l];
+              console.log(numphraze);
+            }
+            
+            l++;
+
+            });
+      
+            
+
+        });
+
+
         }
       }
       attached() {
