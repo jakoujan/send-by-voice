@@ -37,6 +37,10 @@
         font-size: 18px;
         background: #fff;
         border: 1px solid #ccc;
+<<<<<<< HEAD
+=======
+        border-radius: 5px;
+>>>>>>> 8db71e9e5e2e580c8ff62f877bd519ef690a9e94
         color: rgb(58, 58, 58);
         width: 100%;
         padding: 8px 0 8px 0;
@@ -63,7 +67,7 @@
 
         <label for="wa">Cuenta de retiro</label>
         <voice-recognition id="warecognise" accent="es-MX"></voice-recognition>
-        <select id="retir" name="wa" value="{{transaction.wa::change}}">
+        <select id="wa" name="wa" value="{{transaction.wa::change}}">
           <option>Seleccione una cuenta</option>
           <template is="dom-repeat" items="{{was}}">
             <option data$="{{index}}" value$="{{item}}">{{item.account}}</option>
@@ -96,8 +100,6 @@
         }
       }
 
-
-
       connectedCallback() {
         super.connectedCallback();
         this.$.wavoice.speak();
@@ -108,7 +110,6 @@
           let c = 1;
           var numseparate = '';
           this.get('was').forEach(a => {
-
             setTimeout(() => {
               numseparate = '';
               var num = a.account;
@@ -121,32 +122,25 @@
               this.$.wavoice.speak();
               c++;
             }, 5000);
-
           });
-          
+
           this.$.warecognise.recognition.start();
           this.$.warecognise.addEventListener('result', function (e) {
-             var numphrase;
-             var l = 0;
-             var recogni = e.detail.result;
-             recogni = recogni.split('');
-             var arrayRecognise = '';
-             console.log(recogni);
-             recogni.forEach(r => {
-              if(isNaN(r))
-               { 
-               }else{
-                 numphrase = r;
-                 numphrase = numphrase -1;
-                 console.log(numphrase);
-               }
-             });
-
-            
+            var numphraze;
+            var l = 0;
+            var recogni = e.detail.result;
+            recogni = recogni.split('');
+            var arrayRecognise = '';
+            recogni.forEach(r => {
+              if (isNaN(r)) {
+              } else {
+                numphraze = r;
+                numphraze = numphraze - 1;
+                this.$.wa.selectIndex(numphraze);
+              }
+            });
 
           });
-
-          
         }
       }
 
