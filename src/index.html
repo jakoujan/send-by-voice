@@ -22,34 +22,7 @@
 </head>
 <body>
   <app-root></app-root>
-  <voice-player autoplay text="Por favor selecciona la cuenta de retiro"></voice-player>
-
-  <voice-player id="leer-cuentas" autoplay text="hola"></voice-player>  
-
-  <voice-recognition id="recognition-element"></voice-recognition>
-
-<script>
-
- var input2 = document.querySelector('#leer-cuentas');
- input2.addEventListener('onend', function(e) {
-    alert('termino');
-  });
-
   
-
-/*var form = document.querySelector('#recognition-form'),
-    input = document.querySelector('#recognition-input'),
-    element = document.querySelector('#recognition-element');
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    element.start();
-});
-
-element.addEventListener('result', function(e) {
-    input.textContent = e.detail.result;
-});*/
-</script>
 
 </body>
 </html>
