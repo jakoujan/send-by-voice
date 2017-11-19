@@ -5,7 +5,27 @@
   <div class="content">
     <h1>Transferencia de cuenta a cuenta</h1>
     <form #ngForm="ngForm">
-            
+      <div class="form-group">
+        <label for="ra">Cuenta de retiro</label>
+        <select class="form-control" name="wa" [(ngModel)]="wa">
+          <option *ngFor="let a of was" [ngValue]="a">{{a.account}}</option>
+        </select>
+      </div>
+      <p class="data">Cuenta seleccionada: {{wa.account}} - {{wa.description}}</p>
+      <div class="form-group">
+        <label for="ra">Cuenta de deposito</label>
+        <select class="form-control" name="da" [(ngModel)]="da">
+          <option *ngFor="let a of das" [ngValue]="a">{{a.account}}</option>
+        </select>
+      </div>
+      <p class="data">Cuenta seleccionada: {{da.account}} - {{da.description}}</p>
+      <div class="form-group">
+        <label for="amount">Monto del deposito</label>
+        <input type="number" class="form-control" name="amount" placeholder="Monto del deposito" [(ngModel)]="amount">
+      </div>
+      <div style="float: right">
+        <button (click)="submit()" class="btn btn-primary btn-sm">Transferir fondos</button>
+      </div>
     </form>
   </div>
 </div>
