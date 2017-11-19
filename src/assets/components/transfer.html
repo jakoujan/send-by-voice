@@ -75,7 +75,6 @@
       }
       connectedCallback() {
         super.connectedCallback();
-        console.log('connectedCallback');
         this.$.wavoice.speak();
         this.$.warecognise.recognition.start();
 
@@ -102,28 +101,7 @@
 
           });
 
-          this.$.warecognise.addEventListener('result', function(e) {
-            var numphraze;
-            var l = 0;
-            var recogni = e.detail.result;
-            recogni = recogni.split('');
-            var arrayRecognise = '';
-            recogni.forEach(r => {
-              arrayRecognise += r;
-              if(isNaN(arrayRecognise[l]))
-            { 
-            }else{
-              numphraze = arrayRecognise[l];
-              console.log(numphraze);
-            }
-            
-            l++;
-
-            });
-      
-            
-
-        });
+         
 
 
         }
