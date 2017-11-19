@@ -27,39 +27,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         z-index: 1;
         cursor: pointer;
       }
+
       button img {
         width: 30px;
         padding: 0 10px;
       }
     </style>
-    <button on-tap="signIn">
-      <img class="img-30" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0iMjMwNCIg&#13;&#10;aGVpZ2h0PSIxNzkyIiB2aWV3Qm94PSIwIDAgMjMwNCAxNzkyIiB4bWxucz0iaHR0cDovL3d3dy53&#13;&#10;My5vcmcvMjAwMC9zdmciPjxwYXRoIGQ9Ik0xNDM3IDkxM3EwIDIwOC04NyAzNzAuNXQtMjQ4IDI1&#13;&#10;NC0zNjkgOTEuNXEtMTQ5IDAtMjg1LTU4dC0yMzQtMTU2LTE1Ni0yMzQtNTgtMjg1IDU4LTI4NSAx&#13;&#10;NTYtMjM0IDIzNC0xNTYgMjg1LTU4cTI4NiAwIDQ5MSAxOTJsLTE5OSAxOTFxLTExNy0xMTMtMjky&#13;&#10;LTExMy0xMjMgMC0yMjcuNSA2MnQtMTY1LjUgMTY4LjUtNjEgMjMyLjUgNjEgMjMyLjUgMTY1LjUg&#13;&#10;MTY4LjUgMjI3LjUgNjJxODMgMCAxNTIuNS0yM3QxMTQuNS01Ny41IDc4LjUtNzguNSA0OS04MyAy&#13;&#10;MS41LTc0aC00MTZ2LTI1Mmg2OTJxMTIgNjMgMTIgMTIyem04NjctMTIydjIxMGgtMjA5djIwOWgt&#13;&#10;MjEwdi0yMDloLTIwOXYtMjEwaDIwOXYtMjA5aDIxMHYyMDloMjA5eiIgZmlsbD0iI2ZmZiIvPjwv&#13;&#10;c3ZnPg==">
-      <span>Sign in with Google</span>
+    <button on-click="signIn">
+      <span>Accede a la banca</span>
     </button>
   </template>
   <script>
-    Polymer({
-      is: 'na-login',
-
-      properties: {
-        disabled: {
-          type: Boolean,
-          reflectToAttribute: true,
-          value: false
-        },
-
-        signedIn: {
-          type: Boolean,
-          reflectToAttribute: true,
-          value: false
+    class NaLogin extends Polymer.Element {
+      static get is() { return 'na-login'; }
+      static get properties() {
+        return {
+          disabled: {
+            type: Boolean,
+            value: false
+          },
+          signedIn: {
+            type: Boolean,
+            value: false
+          }, 
+          profile: {
+            type: Object
+          }
         }
-      },
-
-      signIn: function() {
-        this.fire('sign-in', null, {
-          bubbles: false
-        });
       }
-    });
+
+      signIn() {
+        this.dispatchEvent(new CustomEvent('sign-in', {bubbles: false}));
+      }
+    }
+
+    window.customElements.define(NaLogin.is, NaLogin);
   </script>
 </dom-module>
